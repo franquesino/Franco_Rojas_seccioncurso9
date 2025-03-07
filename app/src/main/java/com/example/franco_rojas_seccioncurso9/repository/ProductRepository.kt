@@ -85,4 +85,11 @@ class ProductRepository(context: Context) {
         db.close()
         return productList
     }
+
+    fun deleteProductFromDatabase(productId: Int) {
+        val db = dbHelper.writableDatabase
+        db.delete("products", "id=?", arrayOf(productId.toString()))
+        db.close()
+    }
+
 }
