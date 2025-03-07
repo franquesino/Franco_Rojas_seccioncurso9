@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/add_product"
         android:title="Agregar Producto"
         android:icon="@android:drawable/ic_input_add"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/view_chart"
         android:title="Ver Gráfico"
         android:icon="@android:drawable/ic_menu_gallery"
-        android:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
 </menu>
