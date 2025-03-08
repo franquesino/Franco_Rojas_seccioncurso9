@@ -50,6 +50,11 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread {
                 adapter = ProductAdapter(productList, this@MainActivity::deleteProduct)
                 recyclerView.adapter = adapter
+
+                if (productList.isNotEmpty()) {
+                    Toast.makeText(this@MainActivity, "Productos cargados correctamente", Toast.LENGTH_SHORT).show()
+                    Log.d("MainActivity", "Productos cargados correctamente en la base de datos.")
+                }
             }
         }
     }
