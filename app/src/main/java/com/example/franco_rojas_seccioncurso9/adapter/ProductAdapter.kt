@@ -10,15 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.franco_rojas_seccioncurso9.R
 import com.example.franco_rojas_seccioncurso9.model.Product
 import com.squareup.picasso.Picasso
+import android.view.Menu // Se añade la importación para `Menu`
 
 class ProductAdapter(
     private val productList: MutableList<Product>,
-    private val onDeleteProduct: (Product) -> Unit
+    private val onDeleteProduct: (Product) -> Unit,
+    private val onAddProduct: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
-    class ProductViewHolder(view: View, private val onDeleteProduct: (Product) -> Unit)
-        : RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
-
+    inner class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
         val productImage: ImageView = view.findViewById(R.id.productImage)
         val productTitle: TextView = view.findViewById(R.id.productTitle)
         val productPrice: TextView = view.findViewById(R.id.productPrice)
@@ -31,8 +31,12 @@ class ProductAdapter(
         }
 
         override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
-            menu?.add(bindingAdapterPosition, 101, 0, "Eliminar producto")?.setOnMenuItemClickListener {
+            menu?.add(Menu.NONE, 101, 0, "Eliminar producto")?.setOnMenuItemClickListener {
                 onDeleteProduct(product)
+                true
+            }
+            menu?.add(Menu.NONE, 102, 1, "Agregar producto")?.setOnMenuItemClickListener {
+                onAddProduct(product)
                 true
             }
         }
@@ -40,15 +44,17 @@ class ProductAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
-        return ProductViewHolder(view, onDeleteProduct)
+        return ProductViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
         holder.product = product
         holder.productTitle.text = product.title
-        holder.productPrice.text = holder.itemView.context.getString(R.string.price_text, product.price.toString())
-        holder.productRating.text = holder.itemView.context.getString(R.string.rating_text, product.rating.toString())
+
+        // Utilizamos recursos de strings para evitar la concatenación
+        holder.productPrice.text = holder.itemView.context.getString(R.string.product_price, product.price)
+        holder.productRating.text = holder.itemView.context.getString(R.string.product_rating, product.rating)
 
         Picasso.get().load(product.image).into(holder.productImage)
     }

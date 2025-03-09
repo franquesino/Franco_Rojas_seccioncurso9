@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Franco_Rojas_seccioncurso9</string>
-    <string name="price_text">Precio: $%s</string>
-    <string name="rating_text">Calificación: %s</string>
+    <string name="product_price">Precio: $%.2f</string>
+    <string name="product_rating">Calificación: %.1f</string>
 
 </resources>
