@@ -92,4 +92,18 @@ class ProductRepository(context: Context) {
         db.close()
     }
 
+    fun insertProduct(product: Product) {
+        val db = dbHelper.writableDatabase
+        val values = ContentValues().apply {
+            put("id", product.id)
+            put("title", product.title)
+            put("price", product.price)
+            put("rating", product.rating)
+            put("image", product.image)
+        }
+        db.insert("products", null, values)
+        db.close()
+    }
+
+
 }
