@@ -48,6 +48,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
 
 

@@ -19,6 +19,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import androidx.recyclerview.widget.DefaultItemAnimator
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: ProductAdapter
     private lateinit var repository: ProductRepository
     private var productList = mutableListOf<Product>()
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +45,12 @@ class MainActivity : AppCompatActivity() {
         repository = ProductRepository(this)
 
         loadProducts()
+
+        val fab: FloatingActionButton = findViewById(R.id.fab_view_chart)
+        fab.setOnClickListener {
+            val intent = Intent(this, ChartActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun loadProducts() {
@@ -88,17 +99,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.add_product -> {
-                showAddProductDialog()
-                true
-            }
             R.id.view_chart -> {
-                startActivity(Intent(this, ChartActivity::class.java))
+                val intent = Intent(this, ChartActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
 
     private fun showAddProductDialog() {
         val builder = AlertDialog.Builder(this)

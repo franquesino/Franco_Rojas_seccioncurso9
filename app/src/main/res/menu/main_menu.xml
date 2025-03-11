@@ -12,6 +12,6 @@
         android:id="@+id/view_chart"
         android:title="Ver Gráfico"
         android:icon="@android:drawable/ic_menu_gallery"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
 </menu>
