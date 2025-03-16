@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread {
                 adapter.notifyDataSetChanged()
                 Toast.makeText(this@MainActivity, "Producto eliminado", Toast.LENGTH_SHORT).show()
+                Log.d("MainActivity", "Producto eliminado")
             }
         }
     }
@@ -86,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread {
                 adapter.notifyDataSetChanged()
                 Toast.makeText(this@MainActivity, "Producto agregado", Toast.LENGTH_SHORT).show()
+                Log.d("MainActivity", "Producto agregado: ${product.title}")
             }
         }
     }

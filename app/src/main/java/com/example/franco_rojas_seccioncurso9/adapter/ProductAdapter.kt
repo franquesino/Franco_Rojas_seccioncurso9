@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.franco_rojas_seccioncurso9.R
 import com.example.franco_rojas_seccioncurso9.model.Product
 import com.squareup.picasso.Picasso
-import android.view.Menu // Se añade la importación para `Menu`
+import android.view.Menu
 
 class ProductAdapter(
     private val productList: MutableList<Product>,
@@ -52,7 +52,7 @@ class ProductAdapter(
         holder.product = product
         holder.productTitle.text = product.title
 
-        // Utilizamos recursos de strings para evitar la concatenación
+
         holder.productPrice.text = holder.itemView.context.getString(R.string.product_price, product.price)
         holder.productRating.text = holder.itemView.context.getString(R.string.product_rating, product.rating)
 

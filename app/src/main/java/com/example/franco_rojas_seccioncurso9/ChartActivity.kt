@@ -40,8 +40,8 @@ class ChartActivity : AppCompatActivity() {
     private fun loadChartData() {
         lifecycleScope.launch(Dispatchers.IO) {
             val products = repository.getAllProducts()
-                .sortedByDescending { it.rating }  // Ordena por calificación de mayor a menor
-                .take(5)  // Toma solo los 5 mejores
+                .sortedByDescending { it.rating }
+                .take(5)
 
             Log.d("ChartActivity", "Productos cargados: ${products.size}")
 
@@ -51,7 +51,7 @@ class ChartActivity : AppCompatActivity() {
             for ((index, product) in products.withIndex()) {
                 Log.d("ChartActivity", "Producto: ${product.title} - Rating: ${product.rating}")
                 entries.add(BarEntry(index.toFloat(), product.rating.toFloat()))
-                labels.add(product.title.take(10)) // Solo toma los primeros 10 caracteres del nombre
+                labels.add(product.title.take(10))
             }
 
             runOnUiThread {
@@ -61,26 +61,26 @@ class ChartActivity : AppCompatActivity() {
                 }
 
                 val dataSet = BarDataSet(entries, "Top 5 Productos").apply {
-                    color = ContextCompat.getColor(this@ChartActivity, R.color.purple_500) // Añade color
+                    color = ContextCompat.getColor(this@ChartActivity, R.color.purple_500)
                     valueTextColor = Color.BLACK
                 }
 
                 val barData = BarData(dataSet).apply {
                     barWidth = 0.5f
-                    setValueFormatter(LargeValueFormatter()) // Para formato de números
+                    setValueFormatter(LargeValueFormatter())
                 }
 
                 with(barChart) {
                     data = barData
                     description.isEnabled = false
                     setFitBars(true)
-                    animateY(1000) // Animación
+                    animateY(1000)
 
                     xAxis.apply {
                         position = XAxis.XAxisPosition.BOTTOM
                         setDrawGridLines(false)
                         granularity = 1f
-                        valueFormatter = IndexAxisValueFormatter(labels) // Etiquetas de texto
+                        valueFormatter = IndexAxisValueFormatter(labels)
                     }
 
                     axisLeft.apply {
